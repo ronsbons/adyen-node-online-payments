@@ -43,7 +43,7 @@ export ADYEN_MERCHANT_ACCOUNT="your_merchant_account"
 4. Run `npm run dev` to start the development server
 5. Open the forwarded port in your browser
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/adyen-examples/adyen-node-online-payments?ref=main&devcontainer_path=.devcontainer%2Fdevcontainer.json)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/ronsbons/adyen-node-online-payments?ref=main&devcontainer_path=.devcontainer%2Fdevcontainer.json)
 
 | Demos | Description | Details |
 | --: | :-- | :-- |
