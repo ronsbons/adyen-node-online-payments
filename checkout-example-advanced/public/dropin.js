@@ -21,10 +21,12 @@ async function startCheckout() {
       environment: "test",
       amount: {
         value: 10000,
-        currency: 'EUR'
+        // currency: 'EUR'
+        currency: 'USD'
       },
       locale: "en_US",
-      countryCode: 'NL',
+      countryCode: 'US',
+      // countryCode: 'NL',
       showPayButton: true,
       // override Security Code label
       translations: {
@@ -70,7 +72,8 @@ async function startCheckout() {
       },
       onError: (error, component) => {
         console.error("onError", error.name, error.message, error.stack, component);
-        window.location.href = "/result/error";
+        // comment out the below to prevent immediate page redirect, in order to see error in detail
+        // window.location.href = "/result/error";
       },
       // Used for the Native 3DS2 Authentication flow, see: https://docs.adyen.com/online-payments/3d-secure/native-3ds2/
       onAdditionalDetails: async (state, component, actions) => {
@@ -114,7 +117,10 @@ async function startCheckout() {
           securityCodeFourDigits: '1234',
           holderName: 'J. Smith'
         }
-      }
+      },
+      // paypal: {
+      //   intent: "capture"
+      // }
     };
 
     // Start the AdyenCheckout and mount the element onto the 'payment' div.
@@ -140,7 +146,10 @@ function handleOnPaymentCompleted(resultCode) {
       window.location.href = "/result/pending";
       break;
     default:
-      window.location.href = "/result/error";
+      // below console log untested
+      console.log("error", resultCode)
+      // comment out the below in order to see the result/error
+      // window.location.href = "/result/error";
       break;
   }
 }
@@ -153,7 +162,10 @@ function handleOnPaymentFailed(resultCode) {
       window.location.href = "/result/failed";
       break;
     default:
-      window.location.href = "/result/error";
+      // below console log untested
+      console.log("failed", resultCode)
+      // comment out the below in order to see the result/error
+      // gwindow.location.href = "/result/error";
       break;
   }
 }
