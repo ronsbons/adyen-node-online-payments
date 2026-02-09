@@ -36,6 +36,7 @@ async function startCheckout() {
       },
       onSubmit: async (state, component, actions) => {
         console.info("onSubmit", state, component, actions);
+        // comment out the below try object if you want to stop to see state.data.
         try {
           if (state.isValid) {
             const { action, order, resultCode } = await fetch("/api/payments", {
@@ -128,6 +129,8 @@ async function startCheckout() {
     const dropin = new Dropin(adyenCheckout, {
       paymentMethodsConfiguration: paymentMethodsConfiguration
     }).mount('#dropin-container');
+    
+    // console.log(configuration.amount)
 
   } catch (error) {
     console.error(error);
