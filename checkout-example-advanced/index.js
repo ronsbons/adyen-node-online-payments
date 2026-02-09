@@ -76,12 +76,12 @@ app.post("/api/payments", async (req, res) => {
     const protocol = req.socket.encrypted? 'https' : 'http';    
     // ideally the data passed here should be computed based on business logic
     const response = await checkout.PaymentsApi.payments({
-      amount: { currency, value: 10000 }, // value is 100€ in minor units
+      // amount: { currency, value: 10000 }, // value is 100€ in minor units
       // hardcoded currency option
-      // amount: {
-      //   currency: "USD",
-      //   value: 10000
-      // },
+      amount: {
+        currency: "USD",
+        value: 10000
+      },
       reference: orderRef, // required
       merchantAccount: process.env.ADYEN_MERCHANT_ACCOUNT, // required
       channel: "Web", // required
@@ -106,7 +106,7 @@ app.post("/api/payments", async (req, res) => {
       deliveryDate: new Date("2017-07-17T13:42:40.428+01:00"),
       // shopperStatement: "Aceitar o pagamento até 15 dias após o vencimento.Não cobrar juros. Não aceitar o pagamento com cheque",
       // below fields are required for Klarna, line items included
-      countryCode: req.body.paymentMethod.type.includes("klarna") ? "DE" : null,
+      // countryCode: req.body.paymentMethod.type.includes("klarna") ? "DE" : null,
       shopperReference: "12345",
       shopperEmail: "youremail@email.com",
       shopperLocale: "en_US",
