@@ -77,7 +77,11 @@ const createSession = async (sessionData) => {
       merchantAccount: config.adyen.ADYEN_MERCHANT_ACCOUNT,
       reference: orderRef,
       returnUrl: `${baseUrl}/handleShopperRedirect?orderRef=${orderRef}`,
-      lineItems: lineItems
+      lineItems: lineItems,
+      shopperReference: "blueprint-user",
+      recurringProcessingModel: "CardOnFile",
+      shopperInteraction: "Ecommerce",
+      storePaymentMethodMode: "askForConsent"
     };
 
     console.log('Creating session with request:', {
