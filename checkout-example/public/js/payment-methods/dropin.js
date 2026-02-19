@@ -15,7 +15,7 @@ async function startCheckout(countryCode = 'NL') {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-      },
+      }
     }).then((response) => response.json());
 
     // Get locale for the country
@@ -35,10 +35,11 @@ async function startCheckout(countryCode = 'NL') {
       },
       onPaymentCompleted: (result, component) => {
         if (window.errorHandler) {
-          window.errorHandler.handlePaymentCompleted(result, component);
+          // window.errorHandler.handlePaymentCompleted(result, component);
+          console.info("onPaymentCompleted", result, component);
         } else {
           console.info("onPaymentCompleted", result, component);
-          handleOnPaymentCompleted(result.resultCode);
+          // handleOnPaymentCompleted(result.resultCode);
         }
       },
       onPaymentFailed: (result, component) => {
@@ -46,7 +47,7 @@ async function startCheckout(countryCode = 'NL') {
           window.errorHandler.handlePaymentFailed(result, component);
         } else {
           console.info("onPaymentFailed", result, component);
-          handleOnPaymentFailed(result.resultCode);
+          // handleOnPaymentFailed(result.resultCode);
         }
       },
       onError: (error, component) => {
@@ -54,7 +55,7 @@ async function startCheckout(countryCode = 'NL') {
           window.errorHandler.handleGeneralError(error, component);
         } else {
           console.error("onError", error.name, error.message, error.stack, component);
-          window.location.href = "/result/error";
+          // window.location.href = "/result/error";
         }
       },
     };
